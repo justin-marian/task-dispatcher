@@ -30,7 +30,7 @@ The `SQ` policy is used to **minimize wait times** by allocating tasks to the no
 - **Fairness**: Considers both executing and waiting tasks to accurately assess a node's workload.
 - **Tie-Breaking**: When multiple nodes have equal queue lengths, tasks go to the node with the **lowest ID**.
 
-## Least Work Left (LWL)
+## Least Work Left (`LWL`)
 
 The `LWL` policy **prioritizes nodes** based on the *least amount of pending work*, which is calculated by summing the durations of all tasks in the queue as well as the one currently being executed. This ***strategy aims to balance***  the workload by focusing on the total work left rather than just the number of tasks.
 
@@ -38,7 +38,7 @@ The `LWL` policy **prioritizes nodes** based on the *least amount of pending wor
 - **Fairness**: Includes both executing and queued tasks for accurate workload assessment.
 - **Efficiency**: Focuses on quick task completion for faster turnover and better resource utilization.
 
-## Size Interval Task Assignment (SITA)
+## Size Interval Task Assignment (`SITA`)
 
 The `SITA` scheduling policy categorizes tasks into three sizes: **short**, **medium**, and **long**. It assigns tasks to one of three specific nodes based on their size, with each node specialized in handling a particular category of task sizes. This ***policy aims to optimize*** task processing by tailoring node capabilities to task requirements.
 
