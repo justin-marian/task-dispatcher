@@ -10,16 +10,16 @@ The `Task Dispatcher` is acting as the system's load balancer, is managing the f
 
 ## Core Actions
 
-- **Task Reception**: Frontline receiver of all incoming tasks, clients of the data center or other external incomings.
 - **Scheduling Policy Enforcement**: Decide the best-suited node for task execution, taking into account factors such as node load, task priority, and the specific criteria defined by the policies.
+- **Task Reception**: Frontline receiver of all incoming tasks, clients of the data center or other external incomings.
 - **Task Distribution**: Forwards tasks to host nodes for execution, balance the load efficiently across the data center.
 
 ## Round Robin (`RR`)
 
 The `RR` scheduling policy ensures a **fair distribution** of tasks among all nodes by sequentially assigning tasks in a cyclical manner. This policy ***transmits to every node*** an equal number of tasks over time, promoting a balanced workload distribution across the data center.
 
-- **Fairness**: Ensures an equal distribution of tasks across nodes, beneficial for tasks with uniform execution times.
 - **Task Allocation**: Distributes tasks cyclically in fixed order, each node receives a task before repeating the cycle.
+- **Fairness**: Ensures an equal distribution of tasks across nodes, beneficial for tasks with uniform execution times.
 - **Simplicity**: Easy to implement without the need for complex allocation calculations.
 
 ## Shortest Queue (`SQ`)
