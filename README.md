@@ -2,7 +2,7 @@
 
 ## Description
 
-The `Task Dispatcher` is acting as the system's load balancer, is managing the flow of incoming tasks to the data center. It serves as the primary entry point for tasks, determining their optimal distribution across available computing nodes based on a set of predefined scheduling policies.
+This project is a simulation of a `Task Dispatcher` that acts as the system's load balancer, is managing the flow of incoming tasks to the data center. It serves as the primary entry point for tasks, determining their optimal distribution across available computing nodes based on a set of predefined scheduling policies.
 
 <p align="center">
     <img src="./images/dispatcher_hosts.png" width="65%">
