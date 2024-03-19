@@ -10,29 +10,27 @@ The `Task Dispatcher` is acting as the system's load balancer, is managing the f
 
 ## Core Actions
 
-- **Task Reception**: Acts as the frontline receiver of all incoming tasks, whether they originate from clients of the data center or other external sources.
-- **Scheduling Policy Enforcement**: Implements various scheduling policies to decide the best-suited node for task execution, taking into account factors such as node load, task priority, and the specific criteria defined by the policies.
-- **Task Distribution**: Forwards tasks to the chosen host node for execution, aiming to balance the load efficiently across the data center.
+- **Task Reception**: Frontline receiver of all incoming tasks, whether they originate from clients of the data center or other external sources.
+- **Scheduling Policy Enforcement**: Decide the best-suited node for task execution, taking into account factors such as node load, task priority, and the specific criteria defined by the policies.
+- **Task Distribution**: Forwards tasks to the chosen host node for execution,balance the load efficiently across the data center.
 
-## Scheduling Policies
+## Round Robin (RR)
 
-### Round Robin (RR)
-
-The `Round Robin` scheduling policy ensures a **fair distribution** of tasks among all nodes by sequentially assigning tasks in a cyclical manner. This approach guarantees that every node receives an equal number of tasks over time, promoting a balanced workload distribution across the data center.
+The `Round Robin` scheduling policy ensures a **fair distribution** of tasks among all nodes by sequentially assigning tasks in a cyclical manner. It guarantees that every node receives an equal number of tasks over time, promoting a balanced workload distribution across the data center.
 
 - **Sequential Allocation**: Distributes tasks cyclically in fixed order to ensure each node receives a task before repeating the cycle.
 - **Fairness**: Ensures an equal distribution of tasks across nodes, beneficial for tasks with uniform execution times.
 - **Simplicity**: Easy to implement without the need for complex allocation calculations.
 
-### Shortest Queue (SQ)
+## Shortest Queue (SQ)
 
-The `Shortest Queue` policy is used to **minimize wait times** by allocating tasks to the node with the smallest queue of waiting and executing tasks. This approach ensures that tasks are distributed in a manner that keeps queue lengths as short as possible, thereby reducing the overall wait time for tasks to be executed.
+The `Shortest Queue` policy is used to **minimize wait times** by allocating tasks to the node with the smallest queue of waiting and executing tasks. It ensures that tasks are distributed in a manner that keeps queue lengths as short as possible, thereby reducing the overall wait time for tasks to be executed.
 
 - **Queue Calculation**: Considers both executing and waiting tasks to accurately assess a node's workload.
 - **Task Allocation**: New tasks are assigned to nodes with no tasks first, to evenly distribute the workload.
 - **Tie-Breaking**: When multiple nodes have equal queue lengths, tasks go to the node with the lowest ID for simplicity.
 
-### Least Work Left (LWL)
+## Least Work Left (LWL)
 
 The `Least Work Left` policy **prioritizes nodes** based on the *least amount of pending work*, which is calculated by summing the durations of all tasks in the queue as well as the one currently being executed. This strategy aims to balance the workload by focusing on the total work left rather than just the number of tasks.
 
@@ -40,13 +38,13 @@ The `Least Work Left` policy **prioritizes nodes** based on the *least amount of
 - **Node Selection**: Assigns tasks to the node with the least amount of work left, optimizing throughput, priortize tasks based on there duration, reduce idle times.
 - **Efficiency**: Focuses on quick task completion for faster turnover and better resource utilization.
 
-### Size Interval Task Assignment (SITA)
+## Size Interval Task Assignment (SITA)
 
 The `Size Interval Task Assignment` scheduling policy categorizes tasks into three sizes: **short**, **medium**, and **long**. It assigns tasks to one of three specific nodes based on their size, with each node specialized in handling a particular category of task sizes. This policy aims to optimize task processing by tailoring node capabilities to task requirements.
 
-- **Task Categorization**: Tasks are divided into **short**, **medium**, and **long** categories. This classification is typically based on the estimated execution time or complexity of the tasks.
-- **Node Specialization**: Each of the three nodes is designated to handle a specific category of task size. For instance, Node `0` dedicated to **short tasks**, Node `1` to **medium tasks**, and Node `2` to **long tasks**.
-- **Optimized Processing**: By aligning task sizes with node specializations, this policy seeks to improve the overall efficiency and throughput of the system. Nodes can be optimized for the types of tasks they are most likely to encounter, potentially reducing execution times and improving resource utilization.
+- **Task Categorization**: Sorts tasks into **short**, **medium**, and **long** based on complexity or duration.
+- **Node Specialization**: Assigns tasks to nodes (`0` for short, `1` for medium, `2` for long) based on size.
+- **Optimized Processing**: Aligns tasks with specialized nodes to boost efficiency and throughput, optimezed for the most likely task types to encounter.
 
 ## Architectural Role
 
